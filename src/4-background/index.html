@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .hover-1 {
+      background: linear-gradient(#1095c1 0 0) var(--p, 0) / var(--p, 0)
+        no-repeat;
+      transition: 0.4s, background-position 0s;
+    }
+    .hover-1:hover {
+      --p: 100%;
+      color: #fff;
+    }
+
+    .hover-2 {
+      background: linear-gradient(#1095c1 0 0) no-repeat
+        calc(200% - var(--p, 0%)) 100% / 200% var(--p, 0.08em);
+      transition: 0.3s var(--t, 0s),
+        background-position 0.3s calc(0.3s - var(--t, 0s));
+    }
+    .hover-2:hover {
+      --p: 100%;
+      --t: 0.3s;
+      color: #fff;
+    }
+
+    .hover-3 {
+      --c: no-repeat linear-gradient(#1095c1 0 0);
+      background: var(--c) calc(-101% + var(--p, 0%)) 100%,
+        var(--c) calc(201% - var(--p, 0%)) 0;
+      background-size: 50.1% var(--p, 0.08em);
+      transition: 0.3s var(--t, 0s),
+        background-position 0.3s calc(0.3s - var(--t, 0s));
+    }
+    .hover-3:hover {
+      --p: 101%;
+      --t: 0.3s;
+      color: #fff;
+    }
+    .hover-4 {
+      --c: #1095c1;
+      line-height: 1.2em;
+      background: conic-gradient(
+            from -135deg at 100% 50%,
+            var(--c) 90deg,
+            #0000 0
+          )
+          0 var(--p, 0%),
+        conic-gradient(from -135deg at 1.2em 50%, #0000 90deg, var(--c) 0) 100%
+          var(--p, 0%);
+      background-size: var(--s, 0%) 200%;
+      background-repeat: no-repeat;
+      transition: 0.4s ease-in, background-position 0s;
+    }
+    .hover-4:hover {
+      --p: 100%;
+      --s: calc(
+        50% + 0.61em
+      ); /* it should be 0.6em(1.2em/2) but we use a litte bigger */
+      color: #fff;
+    }
+
+    body {
+      height: 100vh;
+      margin: 0;
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 20px;
+      place-content: center;
+    }
+    h3 {
+      font-family: system-ui, sans-serif;
+      font-size: 3rem;
+      margin: 0;
+      cursor: pointer;
+      padding: 0 0.07em;
+    }
+  </style>
+  <body>
+    <h3 class="hover-1">1. Hover Me</h3>
+    <h3 class="hover-2">2. Hover Me</h3>
+    <h3 class="hover-3">3. Hover Me</h3>
+    <h3 class="hover-4">4. Hover Me</h3>
+  </body>
+</html>

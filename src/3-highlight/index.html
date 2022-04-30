@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    html {
+      font-family: consolas, monospace;
+      font-size: 15pt;
+      line-height: 1.5;
+    }
+
+    body {
+      margin: 2rem 5rem;
+      background: #000;
+      color: #f7f7f7;
+    }
+
+    ::selection {
+      background-color: yellow;
+      color: white;
+    }
+  </style>
+  <body>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
+      <strong>facilisis</strong> risus non vehicula commodo. Donec ac pretium
+      sapien, ut lacinia quam.
+    </p>
+
+    <p>
+      Integer quis finibus magna, <em>id dictum risus</em>. Sed in diam non odio
+      bibendum consequat ut ac velit. Phasellus fringilla aliquam justo, vel
+      feugiat massa vehicula ut. Cras ut consequat mi, ut vestibulum ipsum. Nunc
+      enim felis, auctor at diam in, pulvinar gravida augue. Phasellus ultrices
+      iaculis rutrum.
+    </p>
+  </body>
+  <script>
+    const treeWalker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT
+    );
+    const allTextNodes = [];
+    let currentNode = treeWalker.nextNode();
+    while (currentNode) {
+      if (getComputedStyle(currentNode.parentNode).display !== "none") {
+        allTextNodes.push(currentNode);
+      }
+      currentNode = treeWalker.nextNode();
+    }
+
+    const allWords = [];
+    for (const textNode of allTextNodes) {
+      for (const word of textNode.textContent.matchAll(/[a-zA-Z]+/g)) {
+        allWords.push({
+          word: word[0],
+          parentNode: textNode,
+          offset: word.index,
+        });
+      }
+    }
+
+    let index = 0;
+    const range = new Range();
+    setInterval(() => {
+      if (index >= allWords.length) {
+        index = 0;
+      }
+      const { word, parentNode, offset } = allWords[index];
+
+      range.setStart(parentNode, offset);
+      range.setEnd(parentNode, offset + word.length);
+      document.getSelection().removeAllRanges();
+      document.getSelection().addRange(range);
+
+      index++;
+    }, 100);
+  </script>
+</html>

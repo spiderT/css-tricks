@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    div {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    .icon1 {
+      background-color: #ff8a00;
+      background-image: url("../images/1.jpg");
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+
+    .svg {
+      display: none;
+    }
+
+    .icon-img {
+      filter: url("#colorFilter");
+    }
+  </style>
+  <body>
+    <svg id="svg" class="svg">
+      <defs>
+        <filter id="colorFilter">
+          <feColorMatrix
+            colorInterpolationFilters="sRGB"
+            type="matrix"
+            values="1.00 0   0   0   0
+        0   0.54  0   0   0
+        0   0   0  0   0
+        0   0   0   1   0 "
+          />
+        </filter>
+      </defs>
+    </svg>
+    <div class="icon1"></div>
+    <div class="icon2">
+      <img class="icon-img" src="../images/1.jpg" alt="" />
+    </div>
+  </body>
+</html>
