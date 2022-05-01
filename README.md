@@ -7,6 +7,10 @@
   - [2. Add a CSS Lens Flare to Photos for a Bright Touch](#2-add-a-css-lens-flare-to-photos-for-a-bright-touch)
   - [3. CSS Custom Highlight API: Range](#3-css-custom-highlight-api-range)
   - [4. Cool Hover Effects That Use Background Properties](#4-cool-hover-effects-that-use-background-properties)
+  - [5. Scroll-Triggered-Animation](#5-scroll-triggered-animation)
+  - [6. scrolltimeline](#6-scrolltimeline)
+  - [7. clip-path](#7-clip-path)
+  - [8. overscroll-behavior](#8-overscroll-behavior)
 
 ## 1. Use FeColorMatrix to Change an SVG Fill
 
@@ -192,10 +196,246 @@ https://www.w3.org/TR/css-highlight-api-1/
 
 ## 4. Cool Hover Effects That Use Background Properties
 
+通过组合transforms, and transitions属性，设置background变量值，得到一些动画效果
 
+> 效果1——左右渐变动画
 
+```css
+.hover-1 {
+  background: linear-gradient(#1095c1 0 0) var(--p, 0) / var(--p, 0) no-repeat;
+  transition: .4s, background-position 0s;
+}
+.hover-1:hover {
+  --p: 100%;
+  color: #fff;
+}
+```
 
+> 效果2——上下渐变动画
+
+![background](./src/images/background1.jpg)
+
+```css
+.hover-2 {
+  background: linear-gradient(#1095c1 0 0) no-repeat
+    calc(200% - var(--p, 0%)) 100% / 200% var(--p, 0.08em);
+  transition: 0.3s var(--t, 0s),
+    background-position 0.3s calc(0.3s - var(--t, 0s));
+}
+.hover-2:hover {
+  --p: 100%;
+  --t: 0.3s;
+  color: #fff;
+}
+```
+
+> 效果3——正方行渐变
+
+![background](./src/images/background2.jpg)
+
+```css
+.hover-3 {
+  --c: no-repeat linear-gradient(#1095c1 0 0);
+  background: var(--c) calc(-101% + var(--p, 0%)) 100%,
+    var(--c) calc(201% - var(--p, 0%)) 0;
+  background-size: 50.1% var(--p, 0.08em);
+  transition: 0.3s var(--t, 0s),
+    background-position 0.3s calc(0.3s - var(--t, 0s));
+}
+.hover-3:hover {
+  --p: 101%;
+  --t: 0.3s;
+  color: #fff;
+}
+```
+
+> 效果4——菱形渐变
+
+![background](./src/images/background3.jpg)
+![background](./src/images/background4.jpg)
+
+```css
+.hover-4 {
+  --c: #1095c1;
+  line-height: 1.2em;
+  background: conic-gradient(
+        from -135deg at 100% 50%,
+        var(--c) 90deg,
+        #0000 0
+      )
+      0 var(--p, 0%),
+    conic-gradient(from -135deg at 1.2em 50%, #0000 90deg, var(--c) 0) 100%
+      var(--p, 0%);
+  background-size: var(--s, 0%) 200%;
+  background-repeat: no-repeat;
+  transition: 0.4s ease-in, background-position 0s;
+}
+.hover-4:hover {
+  --p: 100%;
+  --s: calc(
+    50% + 0.61em
+  ); /* it should be 0.6em(1.2em/2) but we use a litte bigger */
+  color: #fff;
+}
+```
 
 demo代码：src/4-background
 
 参考资料：https://css-tricks.com/cool-hover-effects-using-background-properties/  
+
+
+## 5. Scroll-Triggered-Animation
+
+scroll-triggered延迟加载图像或延迟加载评论部分。这样的话, 不会强迫用户下载元素没有在视窗初始页面加载。许多用户可能永远不会向下滚动,所以可以减少他们(和我们)带宽和加载时间。  
+
+```js
+function scrollTrigger(selector, options = {}) {
+  let els = document.querySelectorAll(selector)
+  els = Array.from(els)
+  els.forEach(el => {
+    addObserver(el, options)
+  })
+}
+function addObserver(el, options) {
+  // Check if `IntersectionObserver` is supported
+  if(!('IntersectionObserver' in window)) {
+    // Simple fallback
+    // The animation/callback will be called immediately so
+    // the scroll animation doesn't happen on unsupported browsers
+    if(options.cb){
+      options.cb(el)
+    } else{
+      entry.target.classList.add('active')
+    }
+    // We don't need to execute the rest of the code
+    return
+  }
+  let observer = new IntersectionObserver((entries, observer) =>; {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        if(options.cb) {
+          options.cb(el)
+        } else{
+          entry.target.classList.add('active')
+        }
+        observer.unobserve(entry.target)
+      }
+    })
+  }, options)
+  observer.observe(el)
+}
+// Example usages:
+scrollTrigger('.intro-text')
+scrollTrigger('.scroll-reveal', {
+  rootMargin: '-200px',
+})
+scrollTrigger('.loader', {
+  rootMargin: '-200px',
+  cb: function(el){
+    el.innerText = 'Loading...'
+    setTimeout(() => {
+      el.innerText = 'Task Complete!'
+    }, 1000)
+  }
+})
+```
+
+demo代码：src/5-scroll-Triggered-Animation
+
+参考资料：https://css-tricks.com/scroll-triggered-animation-vanilla-javascript/  
+
+## 6. scrolltimeline
+
+Animation：https://developer.mozilla.org/en-US/docs/Web/API/Animation
+KeyframeEffect：https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/KeyframeEffect
+
+```js
+new Animation(
+  new KeyframeEffect(
+    document.querySelector(".progressbar"),
+    {
+      backgroundColor: ["red", "darkred"],
+      transform: ["scaleX(0)", "scaleX(1)"],
+    },
+    {
+      duration: 2500,
+      fill: "forwards",
+      easing: "linear",
+    }
+  )
+).play();
+```
+
+demo代码：src/6-scrolltimeline  
+
+参考资料：https://css-tricks.com/scroll-linked-animations-with-the-web-animations-api-waapi-and-scrolltimeline/  
+
+## 7. clip-path
+
+语法
+
+```css
+/* Keyword values */
+clip-path: none;
+
+/* <clip-source> values */
+clip-path: url(resources.svg#c1);
+
+/* <geometry-box> values */
+clip-path: margin-box;
+clip-path: border-box;
+clip-path: padding-box;
+clip-path: content-box;
+clip-path: fill-box;
+clip-path: stroke-box;
+clip-path: view-box;
+
+/* <basic-shape> values */
+clip-path: inset(100px 50px);
+clip-path: circle(50px at 0 100px);
+clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+clip-path: path('M0.5,1 C0.5,1,0,0.7,0,0.3 A0.25,0.25,1,1,1,0.5,0.3 A0.25,0.25,1,1,1,1,0.3 C1,0.7,0.5,1,0.5,1 Z');
+
+/* Box and shape values combined */
+clip-path: padding-box circle(50px at 0 100px);
+
+/* Global values */
+clip-path: inherit;
+clip-path: initial;
+clip-path: unset;
+```
+
+demo代码：src/7-clip-path 
+
+参考资料： https://css-tricks.com/exploring-the-css-paint-api-polygon-border/  
+https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip-path
+
+
+## 8. overscroll-behavior
+
+overscroll-behavior CSS 属性是 overscroll-behavior-x 和 overscroll-behavior-y 属性的合并写法, 让你可以控制浏览器过度滚动时的表现——也就是滚动到边界。  
+
+```css
+/* 关键字的值 */
+overscroll-behavior: auto; /* 默认 */
+overscroll-behavior: contain;
+overscroll-behavior: none;
+
+/* 使用2个值 */
+overscroll-behavior: auto contain;
+
+/* Global values */
+overflow: inherit;
+overflow: initial;
+overflow: unset;
+```
+
+1. auto——默认效果
+2. contain——设置这个值后，默认的滚动边界行为不变（“触底”效果或者刷新），但是临近的滚动区域不会被滚动链影响到，比如对话框后方的页面不会滚动。
+3. none——临近滚动区域不受到滚动链影响，而且默认的滚动到边界的表现也被阻止。
+
+demo代码：src/8-overscroll-behavior
+
+参考资料：https://css-tricks.com/almanac/properties/o/overscroll-behavior/
+
+

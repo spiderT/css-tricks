@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    @property --border {
+      syntax: "<length>";
+      inherits: true;
+      initial-value: 0;
+    }
+
+    .box {
+      --path: 50% 0, 100% 100%, 0 100%;
+      --border: 5px;
+      margin: 5px 20px;
+      width: 200px;
+      height: 200px;
+      cursor: pointer;
+      background: red;
+      display: inline-block;
+      clip-path: polygon(var(--path));
+      -webkit-mask: paint(polygon-border);
+    }
+
+    body {
+      background: pink;
+    }
+  </style>
+  <body>
+    <div class="box"></div>
+    <div
+      class="box"
+      style="
+        --path: 50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%,
+          32% 57%, 2% 35%, 39% 35%;
+        --border: 3px;
+        background: repeating-conic-gradient(gold 0 36deg, purple 0 72deg);
+      "
+    ></div>
+    <div
+      class="box"
+      style="
+        --path: 50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%;
+        --border: 10px;
+        background: conic-gradient(blue, purple, orange, green, blue);
+      "
+    ></div>
+    <div
+      class="box"
+      style="
+        --path: 50% 0%, 100% 30%, 50% 100%, 0% 30%;
+        background: linear-gradient(45deg, red 50%, blue 0);
+      "
+    ></div>
+    <div
+      class="box"
+      style="
+        --path: 0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%,
+          85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%;
+        background: linear-gradient(#000 40%, #0000 0 60%, grey 0);
+      "
+    ></div>
+
+    <script>
+      if (CSS.paintWorklet) {
+        CSS.paintWorklet.addModule("./registerPaint.js");
+      } else {
+        alert(
+          "Your browser cannot run this demo. Consider Chrome or Edge instead"
+        );
+      }
+    </script>
+  </body>
+  <script>
+    registerPaint(
+      "polygon-border",
+      class {
+        static get inputProperties() {
+          return ["--path", "--border"];
+        }
+
+        paint(ctx, size, properties) {
+          const points = properties.get("--path").toString().split(",");
+          const b = parseFloat(properties.get("--border").value);
+          const w = size.width;
+          const h = size.height;
+
+          const cc = function (x, y) {
+            var fx = 0,
+              fy = 0;
+            if (x.indexOf("%") > -1) {
+              fx = (parseFloat(x) / 100) * w;
+            } else if (x.indexOf("px") > -1) {
+              fx = parseFloat(x);
+            }
+            if (y.indexOf("%") > -1) {
+              fy = (parseFloat(y) / 100) * h;
+            } else if (y.indexOf("px") > -1) {
+              fy = parseFloat(y);
+            }
+            return [fx, fy];
+          };
+
+          var p = points[0].trim().split(" ");
+          p = cc(p[0], p[1]);
+          ctx.beginPath();
+          ctx.moveTo(p[0], p[1]);
+
+          for (var i = 1; i < points.length; i++) {
+            p = points[i].trim().split(" ");
+            p = cc(p[0], p[1]);
+            ctx.lineTo(p[0], p[1]);
+          }
+          ctx.closePath();
+          ctx.lineWidth = 2 * b;
+          ctx.strokeStyle = "#000";
+          ctx.stroke();
+        }
+      }
+    );
+  </script>
+</html>

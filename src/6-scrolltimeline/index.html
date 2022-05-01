@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .progressbar {
+      width: 100vw;
+      height: 0.5em;
+      background: red;
+      transform-origin: 0 50%;
+      transform: scaleX(0);
+
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    body {
+      margin: 0;
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+    }
+
+    html,
+    body {
+      background: #fff;
+    }
+
+    @supports (-webkit-touch-callout: none) {
+      html {
+        height: -webkit-fill-available;
+      }
+      body {
+        min-height: -webkit-fill-available;
+      }
+    }
+  </style>
+  <body>
+    <div class="progressbar"></div>
+    <button>Run Animation</button>
+  </body>
+  <script>
+    document.querySelector("button").addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      // https://developer.mozilla.org/en-US/docs/Web/API/Animation
+      new Animation(
+        // https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/KeyframeEffect
+        new KeyframeEffect(
+          document.querySelector(".progressbar"),
+          {
+            backgroundColor: ["red", "darkred"],
+            transform: ["scaleX(0)", "scaleX(1)"],
+          },
+          {
+            duration: 2500,
+            fill: "forwards",
+            easing: "linear",
+          }
+        )
+      ).play();
+    });
+  </script>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Roboto", sans-serif;
+      padding: 1em;
+    }
+    .intro-text {
+      text-align: center;
+      font-size: 3em;
+      width: 0ch;
+      overflow: hidden;
+      margin: 0 auto;
+      white-space: nowrap;
+      background-image: linear-gradient(155deg, #fb7419, #bc1429, #319197);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .intro-text.active {
+      animation: typeIn 2s steps(28) forwards;
+    }
+    @keyframes typeIn {
+      to {
+        width: 28ch;
+      }
+    }
+
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: #64b6ac;
+      text-align: center;
+      line-height: 200px;
+      margin: 50em 0;
+      margin-left: calc(50% - 100px);
+      transition: transform 0.5s, opacity 0.5s;
+      color: #fff;
+      font-weight: bold;
+    }
+    .box.left {
+      transform: translateX(-200px);
+      opacity: 0;
+    }
+    .box.right {
+      transform: translateX(200px);
+      opacity: 0;
+      background-color: #473bf0;
+    }
+    .box.top {
+      transform: translateY(-200px) rotate(360deg);
+      opacity: 0;
+      background-color: #3d2645;
+    }
+    .box.bottom {
+      transform: translateY(200px) scaleX(3);
+      opacity: 0;
+      background: #ede580;
+    }
+    .box.active {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .loader {
+      text-align: center;
+    }
+  </style>
+  <body>
+    <h1 class="intro-text">Scroll Down To Reveal Stuff!</h1>
+
+    <div class="scroll-reveal box left">I came from left</div>
+    <div class="scroll-reveal box right">I came from right</div>
+    <div class="scroll-reveal box top">I came from top rotating</div>
+
+    <h1 class="loader">hello</h1>
+
+    <div class="scroll-reveal box bottom">I came from bottom scaled</div>
+  </body>
+  <script>
+    function scrollTrigger(selector, options = {}) {
+      let els = document.querySelectorAll(selector);
+      els = Array.from(els);
+      els.forEach((el) => {
+        addObserver(el, options);
+      });
+    }
+
+    function addObserver(el, options) {
+      if (!("IntersectionObserver" in window)) {
+        if (options.cb) {
+          options.cb(el);
+        } else {
+          entry.target.classList.add("active");
+        }
+        return;
+      }
+      let observer = new IntersectionObserver((entries, observer) => {
+        //this takes a callback function which receives two arguments: the elemts list and the observer instance
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (options.cb) {
+              options.cb(el);
+            } else {
+              entry.target.classList.add("active");
+            }
+            observer.unobserve(entry.target);
+          }
+        });
+      }, options);
+      observer.observe(el);
+    }
+    // Example usages:
+    scrollTrigger(".intro-text");
+
+    scrollTrigger(".scroll-reveal", {
+      rootMargin: "-200px",
+    });
+
+    scrollTrigger(".loader", {
+      rootMargin: "-200px",
+      cb: function (el) {
+        el.innerText = "Loading...";
+        setTimeout(() => {
+          el.innerText = "Task Complete!";
+        }, 1000);
+      },
+    });
+  </script>
+</html>
