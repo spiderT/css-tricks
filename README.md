@@ -11,6 +11,8 @@
   - [6. scrolltimeline](#6-scrolltimeline)
   - [7. clip-path](#7-clip-path)
   - [8. overscroll-behavior](#8-overscroll-behavior)
+  - [9. grainy-gradients](#9-grainy-gradients)
+  - [10. a-css-slinky-in-3d](#10-a-css-slinky-in-3d)
 
 ## 1. Use FeColorMatrix to Change an SVG Fill
 
@@ -439,3 +441,77 @@ demo代码：src/8-overscroll-behavior
 参考资料：https://css-tricks.com/almanac/properties/o/overscroll-behavior/
 
 
+## 9. grainy-gradients
+
+[feTurbulence](https://developer.mozilla.org/zh-CN/docs/Web/SVG/Element/feTurbulence)该滤镜利用Perlin噪声函数创建了一个图像。它实现了人造纹理比如说云纹、大理石纹的合成。
+
+```html
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <filter id="noiseFilter">
+    <feTurbulence
+      type="fractalNoise"
+      baseFrequency="0.65"
+      numOctaves="3"
+      stitchTiles="stitch"
+    />
+  </filter>
+
+  <rect width="100%" height="100%" filter="url(#noiseFilter)" />
+</svg>
+```
+
+[isolation](https://developer.mozilla.org/zh-CN/docs/Web/CSS/isolation)属性定义该元素是否必须创建一个新的层叠上下文,该属性的主要作用是当和background-blend-mode属性一起使用时，可以只混合一个指定元素栈的背景：它允许使一组元素从它们后面的背景中独立出来，只混合这组元素的背景。
+
+```css
+.isolate {
+  isolation: isolate;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.ball-shadow {
+  height: 100%;
+  background: radial-gradient(
+      circle at 65% 35%,
+      rgba(0, 0, 0, 0),
+      mediumblue
+    ),
+    url(https://grainy-gradients.vercel.app/noise.svg);
+  filter: contrast(120%) brightness(900%);
+}
+
+.ball-light {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 67% 30%, lightsalmon, crimson);
+  mix-blend-mode: multiply;
+}
+```
+
+demo代码：src/9-grainy-gradients
+
+参考资料：https://css-tricks.com/grainy-gradients/  
+https://developer.mozilla.org/zh-CN/docs/Web/SVG/Element/feTurbulence  
+
+## 10. a-css-slinky-in-3d
+
+![slinky](src/images/slinky.jpg)
+
+translate3d() CSS 函数在3D空间内移动一个元素的位置。这个移动由一个三维向量来表达，分别表示他在三个方向上移动的距离。
+
+```text
+translate3d(tx, ty, tz)
+```
+
+tx是一个 <length> 代表移动向量的横坐标。  
+ty是一个<length> 代表移动向量的纵坐标。  
+tz是一个 <length> 代表移动向量的z坐标  
+
+demo代码：src/10-a-css-slinky-in-3d
+
+参考资料：https://css-tricks.com/a-css-slinky-in-3d/  
+https://codepen.io/jh3y/pen/WNXBdyZ  

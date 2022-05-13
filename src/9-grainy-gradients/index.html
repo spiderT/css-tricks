@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: lightsalmon;
+      height: 100vh;
+    }
+
+    section {
+      position: relative;
+      width: 250px;
+    }
+
+    .ball {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 250px;
+      width: 250px;
+      border-radius: 125px;
+      overflow: hidden;
+      z-index: 20;
+    }
+
+    .isolate {
+      isolation: isolate;
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .ball-shadow {
+      height: 100%;
+      background: radial-gradient(
+          circle at 65% 35%,
+          rgba(0, 0, 0, 0),
+          mediumblue
+        ),
+        url(https://grainy-gradients.vercel.app/noise.svg);
+      filter: contrast(120%) brightness(900%);
+    }
+
+    .ball-light {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 67% 30%, lightsalmon, crimson);
+      mix-blend-mode: multiply;
+    }
+
+    .ground {
+      position: absolute;
+      width: 150%;
+      height: 140px;
+      bottom: -10px;
+      left: -65%;
+      transform: rotateZ(7deg);
+      mix-blend-mode: multiply;
+    }
+
+    .ground-shadow {
+      width: 95%;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 70%, navy, rgba(0, 0, 0, 0)),
+        url(https://grainy-gradients.vercel.app/noise.svg);
+      filter: contrast(150%) brightness(700%);
+    }
+  </style>
+  <body>
+    <section>
+      <div class="ground">
+        <div class="ground-shadow"></div>
+      </div>
+      <div class="ball">
+        <div class="isolate">
+          <div class="ball-shadow"></div>
+          <div class="ball-light"></div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
