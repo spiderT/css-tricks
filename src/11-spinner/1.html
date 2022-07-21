@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .loader {
+      width: 150px; /* control the size */
+      aspect-ratio: 1;
+      display: grid;
+      -webkit-mask: conic-gradient(from 22deg, #0003, #000);
+      mask: conic-gradient(from 22deg, #0003, #000);
+      animation: load 1s steps(8) infinite;
+    }
+    .loader,
+    .loader:before {
+      --_g: linear-gradient(#17177c 0 0) 50%; /* update the color here */
+      background: var(--_g) / 34% 8% space no-repeat,
+        var(--_g) / 8% 34% no-repeat space;
+    }
+    .loader:before {
+      content: "";
+      transform: rotate(45deg);
+    }
+    @keyframes load {
+      from {
+        transform: rotate(0turn);
+      }
+      to {
+        transform: rotate(1turn);
+      }
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-content: center;
+    }
+  </style>
+  <body>
+    <div class="loader"></div>
+  </body>
+</html>

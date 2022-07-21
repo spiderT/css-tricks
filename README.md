@@ -13,6 +13,9 @@
   - [8. overscroll-behavior](#8-overscroll-behavior)
   - [9. grainy-gradients](#9-grainy-gradients)
   - [10. a-css-slinky-in-3d](#10-a-css-slinky-in-3d)
+  - [11. spinner](#11-spinner)
+  - [12. single-element-loaders-the-bars](#12-single-element-loaders-the-bars)
+  - [13. loaders-going-3d](#13-loaders-going-3d)
 
 ## 1. Use FeColorMatrix to Change an SVG Fill
 
@@ -515,3 +518,28 @@ demo代码：src/10-a-css-slinky-in-3d
 
 参考资料：https://css-tricks.com/a-css-slinky-in-3d/  
 https://codepen.io/jh3y/pen/WNXBdyZ  
+
+## 11. spinner
+
+
+
+
+demo代码：src/11-spinner
+
+参考资料：https://css-tricks.com/single-element-loaders-the-spinner/
+
+## 12. single-element-loaders-the-bars
+
+
+
+demo代码：src/12-loaders-the-bars
+
+参考资料：https://css-tricks.com/single-element-loaders-the-bars/
+
+
+## 13. loaders-going-3d
+
+
+demo代码：src/13-loaders-going-3d
+
+参考资料：https://css-tricks.com/single-element-loaders-going-3d/

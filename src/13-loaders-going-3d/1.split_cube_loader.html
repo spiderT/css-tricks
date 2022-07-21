@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .loader {
+      --s: 150px; /* adjust this to control the size */
+
+      --_d: calc(0.353 * var(--s)); /* 0.353 = sin(45deg)/2 */
+      width: calc(var(--s) + var(--_d));
+      aspect-ratio: 1;
+      display: flex;
+      margin: calc(var(--s) / 3) 0;
+    }
+    .loader:before,
+    .loader:after {
+      content: "";
+      flex: 1;
+      clip-path: polygon(
+        var(--_d) 0,
+        100% 0,
+        100% calc(100% - var(--_d)),
+        calc(100% - var(--_d)) 100%,
+        0 100%,
+        0 var(--_d)
+      );
+      background: conic-gradient(
+        from -90deg at calc(100% - var(--_d)) var(--_d),
+        #fff 135deg,
+        #666 0 270deg,
+        #aaa 0
+      );
+      animation: load 1.5s infinite cubic-bezier(0, 0.5, 0.5, 1.8) alternate;
+    }
+    .loader:before {
+      margin-right: calc(var(--_d) / -2 - 1px);
+    }
+    .loader:after {
+      margin-left: calc(var(--_d) / -2 - 1px);
+      animation-delay: -0.75s;
+    }
+    @keyframes load {
+      0%,
+      40% {
+        transform: translateY(calc(var(--s) / -4));
+      }
+      60%,
+      100% {
+        transform: translateY(calc(var(--s) / 4));
+      }
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: grid;
+      place-content: center;
+      background: #000;
+    }
+  </style>
+  <body>
+    <div class="loader"></div>
+  </body>
+</html>

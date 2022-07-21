@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .loader {
+      width: 150px;
+      aspect-ratio: 1;
+      --c: no-repeat linear-gradient(#000 0 0);
+      background: var(--c) 0% 50%, var(--c) 50% 50%, var(--c) 100% 50%;
+      background-size: 20% 100%;
+      animation: load 1s infinite linear;
+    }
+    @keyframes load {
+      0% {
+        background-size: 20% 100%, 20% 100%, 20% 100%;
+      }
+      33% {
+        background-size: 20% 10%, 20% 100%, 20% 100%;
+      }
+      50% {
+        background-size: 20% 100%, 20% 10%, 20% 100%;
+      }
+      66% {
+        background-size: 20% 100%, 20% 100%, 20% 10%;
+      }
+      100% {
+        background-size: 20% 100%, 20% 100%, 20% 100%;
+      }
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+    }
+  </style>
+  <body>
+    <div class="loader"></div>
+  </body>
+</html>

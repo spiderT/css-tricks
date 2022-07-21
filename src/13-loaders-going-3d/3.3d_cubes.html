@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .cube {
+      --m: 4; /* number of columns */
+      --n: 5; /* number of rows */
+      --size: 40px; /* size of the cubes */
+      --gap: 10px; /* gap between cubes */
+
+      margin: auto;
+      aspect-ratio: var(--m) / var(--n);
+      width: calc(var(--m) * (1.353 * var(--size) + var(--gap)));
+      background: conic-gradient(
+          from -90deg at var(--size) calc(0.353 * var(--size)),
+          #249fab 135deg,
+          #81c5a3 0 270deg,
+          #26609d 0
+        )
+        /* update the colors here */ 0 0 / calc(100% / var(--m))
+        calc(100% / var(--n));
+      --_m: linear-gradient(
+          to bottom right,
+          #0000 calc(0.25 * var(--size)),
+          #000 0 calc(100% - calc(0.25 * var(--size)) - 1.414 * var(--gap)),
+          #0000 0
+        ),
+        conic-gradient(
+          from -90deg at right var(--gap) bottom var(--gap),
+          #000 90deg,
+          #0000 0
+        );
+      -webkit-mask: var(--_m);
+      mask: var(--_m);
+      -webkit-mask-size: calc(100% / var(--m)) calc(100% / var(--n));
+      mask-size: calc(100% / var(--m)) calc(100% / var(--n));
+      -webkit-mask-composite: source-in;
+      mask-composite: intersect;
+    }
+
+    body {
+      background: linear-gradient(
+        135deg,
+        #1f005c,
+        #5b0060,
+        #870160,
+        #ac255e,
+        #ca485c,
+        #e16b5c,
+        #f39060,
+        #ffb56b
+      );
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+    }
+  </style>
+  <body>
+    <div class="cube"></div>
+  </body>
+</html>

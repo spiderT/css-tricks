@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .loader {
+      width: 150px; /* control the size */
+      aspect-ratio: 0.75;
+      --c: no-repeat linear-gradient(#000 0 0);
+      -webkit-mask: var(--c), var(--c), var(--c);
+      -webkit-mask-size: 20% 50%;
+      background: conic-gradient(#bfb35a 25%, #5e8c6a 0 75%, #8c2318 0) 0%/200%
+        100%;
+      animation: back 2s infinite steps(1), load 1s infinite linear;
+    }
+    @keyframes back {
+      50% {
+        background-position: 100%;
+      }
+    }
+    @keyframes load {
+      0% {
+        -webkit-mask-position: 0% 100%, 50% 100%, 100% 100%;
+      }
+      20% {
+        -webkit-mask-position: 0% 50%, 50% 100%, 100% 100%;
+      }
+      40% {
+        -webkit-mask-position: 0% 0%, 50% 50%, 100% 100%;
+      }
+      60% {
+        -webkit-mask-position: 0% 100%, 50% 0%, 100% 50%;
+      }
+      80% {
+        -webkit-mask-position: 0% 100%, 50% 100%, 100% 0%;
+      }
+      100% {
+        -webkit-mask-position: 0% 100%, 50% 100%, 100% 100%;
+      }
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+    }
+  </style>
+  <body>
+    <div class="loader"></div>
+  </body>
+</html>

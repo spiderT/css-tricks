@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .loader {
+      --b: 10px; /* border thickness */
+      --n: 10; /* number of dashes*/
+      --g: 10deg; /* gap  between dashes*/
+      --c: red; /* the color */
+
+      width: 100px; /* size */
+      aspect-ratio: 1;
+      border-radius: 50%;
+      padding: 1px; /* get rid of bad outlines */
+      background: conic-gradient(#0000, var(--c)) content-box;
+      --_m: /* we use +/-1deg between colors to avoid jagged edges */ repeating-conic-gradient(
+          #0000 0deg,
+          #000 1deg calc(360deg / var(--n) - var(--g) - 1deg),
+          #0000 calc(360deg / var(--n) - var(--g)) calc(360deg / var(--n))
+        ),
+        radial-gradient(
+          farthest-side,
+          #0000 calc(98% - var(--b)),
+          #000 calc(100% - var(--b))
+        );
+      -webkit-mask: var(--_m);
+      mask: var(--_m);
+      -webkit-mask-composite: destination-in;
+      mask-composite: intersect;
+      animation: load 1s infinite steps(var(--n));
+    }
+    @keyframes load {
+      to {
+        transform: rotate(1turn);
+      }
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: grid;
+      place-content: center;
+      align-items: center;
+      grid-auto-flow: column;
+      gap: 20px;
+      background: #ffebef;
+    }
+  </style>
+  <body>
+    <div class="loader"></div>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .loader {
+      --s: 100px; /* control the size */
+
+      --_d: calc(0.353 * var(--s)); /* 0.353 = sin(45deg)/2 */
+      height: var(--s);
+      aspect-ratio: 3;
+      display: flex;
+      background: linear-gradient(#fff1 0 0) bottom/100% var(--_d) no-repeat;
+      clip-path: polygon(
+        var(--_d) 0,
+        100% 0,
+        100% calc(100% - var(--_d)),
+        calc(100% - var(--_d)) 100%,
+        0 100%,
+        0 var(--_d)
+      );
+    }
+    .loader:before,
+    .loader:after {
+      content: "";
+      clip-path: inherit;
+      background: conic-gradient(
+        from -90deg at calc(100% - var(--_d)) var(--_d),
+        #fff 135deg,
+        #666 0 270deg,
+        #aaa 0
+      );
+    }
+    .loader:before {
+      background-color: #cc333f; /* control the color here */
+      background-blend-mode: multiply;
+      margin-right: calc(var(--_d) / -2);
+      animation: load 2.5s infinite linear;
+    }
+    .loader:after {
+      margin-left: calc(var(--_d) / -2);
+      opacity: 0.4;
+      flex: 1;
+    }
+
+    @keyframes load {
+      0%,
+      5% {
+        width: var(--_d);
+      }
+      95%,
+      100% {
+        width: 100%;
+      }
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: grid;
+      place-content: center;
+      background: #000;
+    }
+  </style>
+  <body>
+    <div class="loader"></div>
+  </body>
+</html>
