@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    img {
+      border-radius: 50%;
+      cursor: pointer;
+      padding: 40px;
+      clip-path: circle(calc(50% - 40px));
+      --_p: 100px;
+      --_g1: radial-gradient(50% 50%, #e71e24 90%, #0000); /* color 1 */
+      --_g2: radial-gradient(50% 50%, #fcc010 90%, #0000); /* color 2 */
+      --_g3: radial-gradient(50% 50%, #85c341 90%, #0000); /* color 3 */
+      --_g4: radial-gradient(50% 50%, #eb2288 90%, #0000); /* color 4 */
+      background: var(--_g1) calc(20% - var(--_p)) calc(20% - var(--_p)), var(--_g2) calc(80% + var(--_p)) calc(8% - var(--_p)), var(--_g3) calc(88% + var(--_p)) calc(82% + var(--_p)),
+        var(--_g3) 55% calc(8% - var(--_p)), var(--_g1) calc(18% - var(--_p)) calc(91% + var(--_p)), var(--_g2) calc(10% - var(--_p)) calc(70% + var(--_p)), var(--_g2) calc(95% + var(--_p)) 40%,
+        var(--_g1) calc(82% + var(--_p)) calc(28% - var(--_p)), var(--_g4) calc(12% - var(--_p)) 30%, var(--_g4) 65% calc(94% + var(--_p)), var(--_g3) calc(20% - var(--_p)) calc(10% - var(--_p)),
+        var(--_g4) calc(42% - var(--_p)) calc(91% + var(--_p));
+      background-size: 15px 15px, 20px 20px, 30px 30px;
+      background-repeat: no-repeat;
+      outline: 150px solid #0005;
+      outline-offset: -150px;
+      transition: 0.5s;
+    }
+    img:hover {
+      clip-path: circle(80%);
+      outline: 3px solid #ef746f;
+      outline-offset: 0;
+      --_p: 0px;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-content: center;
+      grid-auto-flow: column;
+      background: #e8e8e8;
+    }
+  </style>
+  <body>
+    <img src="https://picsum.photos/id/646/200/200" alt="a few flowers" />
+    <img src="https://picsum.photos/id/64/200/200" alt="a girl holding flowers" />
+  </body>
+</html>

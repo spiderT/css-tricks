@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    @layer base, demo;
+
+    @layer demo {
+      .container {
+        border-width: 2rem;
+        border-style: dotted;
+        border-color: grey;
+        border-image-source: repeating-linear-gradient(15deg, #900000, #ee2400, #ffb09c 2rem);
+        border-image-repeat: repeat;
+        border-image-slice: 100 75;
+
+        height: 250px;
+        width: 250px;
+      }
+    }
+
+    @layer base {
+      body {
+        display: grid;
+        place-items: center;
+        height: 100vh;
+      }
+    }
+  </style>
+  <body>
+    <div class="container"></div>
+  </body>
+</html>

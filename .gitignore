@@ -1,0 +1,7 @@
+logs
+node_modules
+npm-debug.log
+.DS_Store
+.nyc_output
+.basement
+.vscode

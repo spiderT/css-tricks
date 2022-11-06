@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    @layer base, demo;
+
+    @layer demo {
+      .container {
+        --angle: 0deg;
+        border-width: 2rem;
+        border-style: dotted;
+        border-color: grey;
+        border-image-source: linear-gradient(var(--angle), #900000, #ee2400, #ffb09c 20rem);
+        border-image-slice: 1;
+        height: 250px;
+        width: 250px;
+        animation: 10s rotate linear infinite;
+      }
+    }
+    @keyframes rotate {
+      to {
+        --angle: 360deg;
+      }
+    }
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    @layer base {
+      body {
+        display: grid;
+        place-items: center;
+        height: 100vh;
+      }
+    }
+  </style>
+  <body>
+    <div class="container"></div>
+  </body>
+</html>

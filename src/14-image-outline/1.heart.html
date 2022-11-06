@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    img {
+      width: 250px;
+      aspect-ratio: 1;
+      object-fit: cover;
+      --_m: radial-gradient(#000 69%, #0000 70%) 84.5% fill/100%;
+      -webkit-mask-box-image: var(--_m);
+      mask-border: var(--_m);
+      clip-path: polygon(-41% 0, 50% 91%, 141% 0);
+      outline: 100vmax solid #ff3e60;
+      outline-offset: -100vmax;
+      transition: 0.7s;
+      cursor: pointer;
+    }
+    img:hover {
+      outline-color: #0000;
+    }
+
+    /* fallback until better support for mask-border */
+    @supports not (-webkit-mask-box-image: var(--_m)) {
+      img {
+        --_m: radial-gradient(circle at 60% 63%, #000 64%, #0000 65%) top left / 50% 50% no-repeat, radial-gradient(circle at 40% 63%, #000 64%, #0000 65%) top right/50% 50% no-repeat,
+          linear-gradient(#000 0 0) bottom/100% 50% no-repeat;
+        -webkit-mask: var(--_m);
+        mask: var(--_m);
+      }
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      grid-auto-flow: column;
+      place-content: center;
+      gap: 50px;
+      background: #ebfffb;
+      filter: drop-shadow(0 0 4px #ff3e60) drop-shadow(0 0 4px #ff3e60);
+    }
+  </style>
+  <body>
+    <img src="https://picsum.photos/id/1005/300/300" alt="a random picture of a man" />
+    <img src="https://picsum.photos/id/64/300/300" alt="a random picture of a girl" />
+  </body>
+</html>

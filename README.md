@@ -16,6 +16,8 @@
   - [11. spinner](#11-spinner)
   - [12. single-element-loaders-the-bars](#12-single-element-loaders-the-bars)
   - [13. loaders-going-3d](#13-loaders-going-3d)
+  - [14. image-outline](#14-image-outline)
+  - [15-border-image-source](#15-border-image-source)
 
 ## 1. Use FeColorMatrix to Change an SVG Fill
 
@@ -543,3 +545,145 @@ demo代码：src/12-loaders-the-bars
 demo代码：src/13-loaders-going-3d
 
 参考资料：https://css-tricks.com/single-element-loaders-going-3d/
+
+
+## 14. image-outline
+
+`outline` 设置多个轮廓属性的简写属性。
+
+outline = 
+  <'outline-color'>  ||
+  <'outline-style'>  ||
+  <'outline-width'>  
+
+
+```css
+/* 样式 */
+outline: solid;
+
+/* 颜色 | 样式 */
+outline: #f66 dashed;
+
+/* 样式 | 宽度 */
+outline: inset thick;
+
+/* 颜色 | 样式 | 宽度 */
+outline: green solid 3px;
+
+/* 全局值 */
+outline: inherit;
+outline: initial;
+outline: unset;
+```
+
+border 和 outline 区别：
+
+1. outline 不占据空间，绘制于元素内容周围。
+2. 根据规范，outline 通常是矩形，但也可以是非矩形的。
+
+`mask`通过遮罩或者裁切特定区域的图片的方式来隐藏一个元素的部分或者全部可见区域。
+
+ mask 的简写会将 mask-border 设为初始值。使用 mask 的简写优于使用其他简写或者各自属性的设置来覆盖。这能保证 mask-border 也会重新设置为新的效果样式。
+
+```text
+mask = 
+  <mask-layer>#  
+
+<mask-layer> = 
+  <mask-reference>              ||
+  <position> [ / <bg-size> ]?   ||
+  <repeat-style>                ||
+  <geometry-box>                ||
+  [ <geometry-box> | no-clip ]  ||
+  <compositing-operator>        ||
+  <masking-mode>                
+
+<mask-reference> = 
+  none           |
+  <image>        |
+  <mask-source>  
+
+<position> = 
+  [ left | center | right | top | bottom | start | end | <length-percentage> ]  |
+  [ left | center | right | x-start | x-end | <length-percentage> ] [ top | center | bottom | y-start | y-end | <length-percentage> ]  |
+  [ center | [ left | right | x-start | x-end ] <length-percentage>? ] && [ center | [ top | bottom | y-start | y-end ] <length-percentage>? ]  |
+  [ center | [ start | end ] <length-percentage>? ] [ center | [ start | end ] <length-percentage>? ]  
+
+<bg-size> = 
+  [ <length-percentage [0,∞]> | auto ]{1,2}  |
+  cover                                      |
+  contain                                    
+
+<repeat-style> = 
+  repeat-x                                     |
+  repeat-y                                     |
+  [ repeat | space | round | no-repeat ]{1,2}  
+
+<geometry-box> = 
+  <shape-box>  |
+  fill-box     |
+  stroke-box   |
+  view-box     
+
+<compositing-operator> = 
+  add        |
+  subtract   |
+  intersect  |
+  exclude    
+
+<masking-mode> = 
+  alpha         |
+  luminance     |
+  match-source  
+
+<image> = 
+  <url>       |
+  <gradient>  
+
+<mask-source> = 
+  <url>  
+
+<length-percentage> = 
+  <length>      |
+  <percentage>  
+
+<shape-box> = 
+  <box>       |
+  margin-box  
+
+<box> = 
+  border-box   |
+  padding-box  |
+  content-box  
+
+```
+
+demo代码：src/14-image-outline
+
+## 15-border-image-source
+
+border-image-source 用于声明元素的边框图片（border-image）的资源。
+
+> 语法
+
+```text
+/* no border-image, use the specified border-style */
+border-image-source: none;
+
+/* the image.jpg is used as image */
+border-image-source: url(image.jpg);
+
+/* a gradient is used as image */
+border-image-source: linear-gradient(to top, red, yellow);
+
+/* Global values */
+border-image-source: inherit;
+border-image-source: initial;
+border-image-source: unset;
+```
+
+demo代码：src/15-border-image-source
+
+参考资料：https://css-tricks.com/almanac/properties/b/border-image-source/  
+https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-source  
+

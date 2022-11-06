@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    img {
+      --_g: 10% /45% 45% no-repeat linear-gradient(#000 0 0);
+      --m: left var(--_i, 0%) top var(--_g), bottom var(--_i, 0%) left var(--_g), top var(--_i, 0%) right var(--_g), right var(--_i, 0%) bottom var(--_g);
+      -webkit-mask: var(--m);
+      mask: var(--m);
+      outline: 100vmax solid #00b4ff;
+      outline-offset: -100vmax;
+      transition: 0.3s linear;
+      cursor: pointer;
+    }
+    img:hover {
+      --_i: 10%;
+      outline-color: #0000;
+    }
+
+    body {
+      margin: 0;
+      display: grid;
+      min-height: 100vh;
+      grid-auto-flow: column;
+      place-content: center;
+      gap: 40px;
+    }
+  </style>
+  <body>
+    <img src="https://picsum.photos/id/1051/250/250" />
+    <img src="https://picsum.photos/id/1011/250/250" />
+  </body>
+</html>
