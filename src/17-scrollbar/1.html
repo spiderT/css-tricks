@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .container {
+      display: flex;
+      margin: 50px;
+      column-gap: 20px;
+    }
+
+    .scrollbar {
+      height: 300px;
+      width: 50%;
+      overflow: auto;
+      padding: 0 10px;
+    }
+    /*       ScrollBar 1        */
+
+    #scrollbar1::-webkit-scrollbar {
+      width: 16px;
+    }
+
+    #scrollbar1::-webkit-scrollbar-track {
+      border-radius: 8px;
+      background-color: #e7e7e7;
+      border: 1px solid #cacaca;
+    }
+
+    #scrollbar1::-webkit-scrollbar-thumb {
+      border-radius: 8px;
+      border: 3px solid transparent;
+      background-clip: content-box;
+      background-color: #d55959;
+    }
+
+    /*        ScrollBar 2    */
+
+    #scrollbar2::-webkit-scrollbar {
+      width: 20px;
+    }
+
+    #scrollbar2::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    #scrollbar2::-webkit-scrollbar-thumb {
+      background-image: url('https://i.ibb.co/1RHr40z/248599.png');
+      background-repeat: no-repeat, no-repeat;
+      background-size: 20px;
+    }
+
+    /*        ScrollBar 3    */
+
+    #scrollbar3::-webkit-scrollbar {
+      width: 20px;
+    }
+
+    #scrollbar3::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    #scrollbar3::-webkit-scrollbar-thumb {
+      background-image: url('https://i.ibb.co/6yx2nn8/arrow.png');
+      background-position: center top;
+      background-repeat: no-repeat, no-repeat;
+      background-size: 50px;
+    }
+    /*        ScrollBar 4    */
+
+    #scrollbar4::-webkit-scrollbar {
+      width: 12px;
+      border-radius: 10px;
+    }
+
+    #scrollbar4::-webkit-scrollbar-track {
+      border-radius: 10px;
+      border: 1px solid #cacaca;
+      background-color: #f1f1f1;
+      box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+    }
+
+    #scrollbar4::-webkit-scrollbar-thumb {
+      background: linear-gradient(
+        90deg,
+        rgba(255, 0, 0, 1) 0%,
+        rgba(255, 154, 0, 1) 10%,
+        rgba(208, 222, 33, 1) 20%,
+        rgba(79, 220, 74, 1) 30%,
+        rgba(63, 218, 216, 1) 40%,
+        rgba(47, 201, 226, 1) 50%,
+        rgba(28, 127, 238, 1) 60%,
+        rgba(95, 21, 242, 1) 70%,
+        rgba(186, 12, 248, 1) 80%,
+        rgba(251, 7, 217, 1) 90%,
+        rgba(255, 0, 0, 1) 100%
+      );
+      border-radius: 10px;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="scrollbar" id="scrollbar1">
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu posuere eros. Aliquam finibus ipsum vel massa molestie semper. Praesent cursus finibus est eu feugiat. Vestibulum aliquam
+          faucibus malesuada. Mauris rhoncus odio id blandit porta. Maecenas ut bibendum augue. Nam pretium fermentum mattis. Aenean nec magna id sapien gravida suscipit. Aliquam molestie hendrerit
+          nulla, sit amet tempor arcu rutrum in. Cras varius turpis id rhoncus vehicula. Sed interdum, orci egestas mollis maximus,
+        </div>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu posuere eros. Aliquam finibus ipsum vel massa molestie semper. Praesent cursus finibus est eu feugiat. Vestibulum aliquam
+          faucibus malesuada. Mauris rhoncus odio id blandit porta. Maecenas ut bibendum augue. Nam pretium fermentum mattis. Aenean nec magna id sapien gravida suscipit. Aliquam molestie hendrerit
+          nulla, sit amet tempor arcu rutrum in. Cras varius turpis id rhoncus vehicula. Sed interdum, orci egestas mollis maximus,
+        </div>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu posuere eros. Aliquam finibus ipsum vel massa molestie semper. Praesent cursus finibus est eu feugiat. Vestibulum aliquam
+          faucibus malesuada. Mauris rhoncus odio id blandit porta. Maecenas ut bibendum augue. Nam pretium fermentum mattis. Aenean nec magna id sapien gravida suscipit. Aliquam molestie hendrerit
+          nulla, sit amet tempor arcu rutrum in. Cras varius turpis id rhoncus vehicula. Sed interdum, orci egestas mollis maximus,
+        </div>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu posuere eros. Aliquam finibus ipsum vel massa molestie semper. Praesent cursus finibus est eu feugiat. Vestibulum aliquam
+          faucibus malesuada. Mauris rhoncus odio id blandit porta. Maecenas ut bibendum augue. Nam pretium fermentum mattis. Aenean nec magna id sapien gravida suscipit. Aliquam molestie hendrerit
+          nulla, sit amet tempor arcu rutrum in. Cras varius turpis id rhoncus vehicula. Sed interdum, orci egestas mollis maximus,
+        </div>
+      </div>
+      <div class="scrollbar" id="scrollbar2">
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu posuere eros. Aliquam finibus ipsum vel massa molestie semper. Praesent cursus finibus est eu feugiat. Vestibulum aliquam
+          faucibus malesuada. Mauris rhoncus odio id blandit porta. Maecenas ut bibendum augue. Nam pretium fermentum mattis. Aenean nec magna id sapien gravida suscipit. Aliquam molestie hendrerit
+          nulla, sit amet tempor arcu rutrum in. Cras varius turpis id rhoncus vehicula. Sed interdum, orci egestas mollis maximus,
+        </div>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu posuere eros. Aliquam finibus ipsum vel massa molestie semper. Praesent cursus finibus est eu feugiat. Vestibulum aliquam
+          faucibus malesuada. Mauris rhoncus odio id blandit porta. Maecenas ut bibendum augue. Nam pretium fermentum mattis. Aenean nec magna id sapien gravida suscipit. Aliquam molestie hendrerit
+          nulla, sit amet tempor arcu rutrum in. Cras varius turpis id rhoncus vehicula. Sed interdum, orci egestas mollis maximus,
+        </div>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu posuere eros. Aliquam finibus ipsum vel massa molestie semper. Praesent cursus finibus est eu feugiat. Vestibulum aliquam
+          faucibus malesuada. Mauris rhoncus odio id blandit porta. Maecenas ut bibendum augue. Nam pretium fermentum mattis. Aenean nec magna id sapien gravida suscipit. Aliquam molestie hendrerit
+          nulla, sit amet tempor arcu rutrum in. Cras varius turpis id rhoncus vehicula. Sed interdum, orci egestas mollis maximus,
+        </div>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu posuere eros. Aliquam finibus ipsum vel massa molestie semper. Praesent cursus finibus est eu feugiat. Vestibulum aliquam
+          faucibus malesuada. Mauris rhoncus odio id blandit porta. Maecenas ut bibendum augue. Nam pretium fermentum mattis. Aenean nec magna id sapien gravida suscipit. Aliquam molestie hendrerit
+          nulla, sit amet tempor arcu rutrum in. Cras varius turpis id rhoncus vehicula. Sed interdum, orci egestas mollis maximus,
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="scrollbar" id="scrollbar3">
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu posuere eros. Aliquam finibus ipsum vel massa molestie semper. Praesent cursus finibus est eu feugiat. Vestibulum aliquam
+          faucibus malesuada. Mauris rhoncus odio id blandit porta. Maecenas ut bibendum augue. Nam pretium fermentum mattis. Aenean nec magna id sapien gravida suscipit. Aliquam molestie hendrerit
+          nulla, sit amet tempor arcu rutrum in. Cras varius turpis id rhoncus vehicula. Sed interdum, orci egestas mollis maximus,
+        </div>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu posuere eros. Aliquam finibus ipsum vel massa molestie semper. Praesent cursus finibus est eu feugiat. Vestibulum aliquam
+          faucibus malesuada. Mauris rhoncus odio id blandit porta. Maecenas ut bibendum augue. Nam pretium fermentum mattis. Aenean nec magna id sapien gravida suscipit. Aliquam molestie hendrerit
+          nulla, sit amet tempor arcu rutrum in. Cras varius turpis id rhoncus vehicula. Sed interdum, orci egestas mollis maximus,
+        </div>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu posuere eros. Aliquam finibus ipsum vel massa molestie semper. Praesent cursus finibus est eu feugiat. Vestibulum aliquam
+          faucibus malesuada. Mauris rhoncus odio id blandit porta. Maecenas ut bibendum augue. Nam pretium fermentum mattis. Aenean nec magna id sapien gravida suscipit. Aliquam molestie hendrerit
+          nulla, sit amet tempor arcu rutrum in. Cras varius turpis id rhoncus vehicula. Sed interdum, orci egestas mollis maximus,
+        </div>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu posuere eros. Aliquam finibus ipsum vel massa molestie semper. Praesent cursus finibus est eu feugiat. Vestibulum aliquam
+          faucibus malesuada. Mauris rhoncus odio id blandit porta. Maecenas ut bibendum augue. Nam pretium fermentum mattis. Aenean nec magna id sapien gravida suscipit. Aliquam molestie hendrerit
+          nulla, sit amet tempor arcu rutrum in. Cras varius turpis id rhoncus vehicula. Sed interdum, orci egestas mollis maximus,
+        </div>
+      </div>
+      <div class="scrollbar" id="scrollbar4">
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu posuere eros. Aliquam finibus ipsum vel massa molestie semper. Praesent cursus finibus est eu feugiat. Vestibulum aliquam
+          faucibus malesuada. Mauris rhoncus odio id blandit porta. Maecenas ut bibendum augue. Nam pretium fermentum mattis. Aenean nec magna id sapien gravida suscipit. Aliquam molestie hendrerit
+          nulla, sit amet tempor arcu rutrum in. Cras varius turpis id rhoncus vehicula. Sed interdum, orci egestas mollis maximus,
+        </div>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu posuere eros. Aliquam finibus ipsum vel massa molestie semper. Praesent cursus finibus est eu feugiat. Vestibulum aliquam
+          faucibus malesuada. Mauris rhoncus odio id blandit porta. Maecenas ut bibendum augue. Nam pretium fermentum mattis. Aenean nec magna id sapien gravida suscipit. Aliquam molestie hendrerit
+          nulla, sit amet tempor arcu rutrum in. Cras varius turpis id rhoncus vehicula. Sed interdum, orci egestas mollis maximus,
+        </div>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu posuere eros. Aliquam finibus ipsum vel massa molestie semper. Praesent cursus finibus est eu feugiat. Vestibulum aliquam
+          faucibus malesuada. Mauris rhoncus odio id blandit porta. Maecenas ut bibendum augue. Nam pretium fermentum mattis. Aenean nec magna id sapien gravida suscipit. Aliquam molestie hendrerit
+          nulla, sit amet tempor arcu rutrum in. Cras varius turpis id rhoncus vehicula. Sed interdum, orci egestas mollis maximus,
+        </div>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu posuere eros. Aliquam finibus ipsum vel massa molestie semper. Praesent cursus finibus est eu feugiat. Vestibulum aliquam
+          faucibus malesuada. Mauris rhoncus odio id blandit porta.
+        </div>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu posuere eros. Aliquam finibus ipsum vel massa molestie semper. Praesent cursus finibus est eu feugiat. Vestibulum aliquam
+          faucibus malesuada. Mauris rhoncus odio id blandit porta.
+        </div>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu posuere eros. Aliquam finibus ipsum vel massa molestie semper. Praesent cursus finibus est eu feugiat. Vestibulum aliquam
+          faucibus malesuada. Mauris rhoncus odio id blandit porta.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
