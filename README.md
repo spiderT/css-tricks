@@ -21,6 +21,7 @@
   - [16-css-grid](#16-css-grid)
   - [17-scrollbar](#17-scrollbar)
   - [18-noise-gradient](#18-noise-gradient)
+  - [19-mix-blend-mode](#19-mix-blend-mode)
 
 ## 1. Use FeColorMatrix to Change an SVG Fill
 
@@ -725,3 +726,53 @@ demo代码：src/17-scrollbar
 demo代码：src/18-scrollbar
 
 参考资料：https://css-tricks.com/making-static-noise-from-a-weird-css-gradient-bug/
+
+## 19-mix-blend-mode
+
+mix-blend-mode: https://developer.mozilla.org/zh-CN/docs/Web/CSS/mix-blend-mode
+
+| Photoshop图层 | CSS混合模式 | 中文名称 | 功能描述 |
+| ------------ | ---------- | -------- | -------- |
+| normal	| normal | 正常模式	| 混合色的像素会透过所用的颜色显示出来| 
+| multiply	| multiply	| 正片叠底模式	| 在“正片叠底”模式中，查看每个通道中的颜色信息，并将“基色”与“混合色”复合。| 
+| screen	| screen	| 滤色模式	| “滤色”模式与“正片叠底”模式正好相反，它将图像的“基色”颜色与“混合色”颜色结合起来产生比两种颜色都浅的第三种颜色| 
+| overlay	| overlay	| 叠加模式	| “叠加”模式把图像的“基色”颜色与“混合色”颜色相混合产生一种中间色。| 
+| darken	| darken	| 变暗模式	| 在“变暗”模式中，查看每个通道中的颜色信息，并选择“基色”或“混合色”中较暗的颜色作为“结果色”。| 
+| lighten	l| ighten	| 变亮模式	| 在“变亮”模式中，查看每个通道中的颜色信息，并选择“基色”或“混合色”中较亮的颜色作为“结果色”。| 
+| color-dodge	| color-dodge	| 颜色减淡模式	| 在“颜色减淡”模式中，查看每个通道中的颜色信息，并通过减小对比度使基色变亮以反映混合色。与黑色混合则不发生变化。| 
+| color-burn	| color-burn	| 颜色加深模式	| 在“颜色加深”模式中，查看每个通道中的颜色信息，并通过增加对比度使基色变暗以反映混合色，如果与白色混合的话将不会产生变化。| 
+| hard-light	| hard-light| 	强光模式	| “强光”模式将产生一种强光照射的效果。如果“混合色”颜色“基色”颜色的像素更亮一些，那么“结果色”颜色将更亮；如果“混合色”颜色比“基色”颜色的像素更暗一些，那么“结果色”将更暗。| 
+| soft-light	| soft-light	| 柔光模式	| 柔光”模式会产生一种柔光照射的效果。如果“混合色”颜色比“基色颜色的像素更亮一些，那么“结果色”将更亮；如果“混合色”颜色比“基色”颜色的像素更暗一些，那么“结果色”颜色将更暗，使图像的亮度反差增大。| 
+| difference	| difference	| 差值模式	| 在“差值”模式中，查看每个通道中的颜色信息，“差值”模式是将从图像中“基色”颜色的亮度值减去“混合色”颜色的亮度值，如果结果为负，则取正值，产生反相效果。| 
+| exclusion	| exclusion	| 排除模式	| “排除”模式与“差值”模式相似，但是具有高对比度和低饱和度的特点。比用“差值”模式获得的颜色要柔和、更明亮一些。| 
+| hue	| hue	| 色相模式	| “色相”模式只用“混合色”颜色的色相值进行着色，而使饱和度和亮度值保持不变。| 
+| saturation	| saturation	| 饱和度模式	| “饱和度”模式的作用方式与“色相”模式相似，它只用“混合色”颜色的饱和度值进行着色，而使色相值和亮度值保持不变。| 
+| color	| color	| 颜色模式	“| 颜色”模式能够使用“混合色”颜色的饱和度值和色相值同时进行着色，而使“基色”颜色的亮度值保持不变。“颜色”模式模式可以看成是“饱合度”模式和“色相”模式的综合效果。| 
+| luminosity	| luminosity	| 亮度模式	| “亮度”模式能够使用“混合色”颜色的亮度值进行着色，而保持“基色”颜色的饱和度和色相数值不变。其实就是用“基色”中的“色相”和“饱和度”以及“混合色”的亮度创建“结果色”。| 
+
+分为几个大类：
+
+| 分类名称	|  混合模式名称	| 描述 | 
+| ---------- | -------- | -------- |
+| 基础混合模式	| normal	| 利用图层透明度和不透明度来控制与下面的图层混合| 
+| 降暗混合模式	| darken,multiply,color-burn	| 减色模式，滤掉图像中高亮色，从而达到图像变暗| 
+| 加亮混合模式	| screen,lighten,color-dodge	| 加色模式，滤掉图像中暗色，从而达到图像变亮| 
+| 融合混合模式	| overlay,soft-light,hard-light	| 用于不同程度的对上、下两图层的融合| 
+| 变异混合模式	| difference,exclusion,hard-light	| 用于制作各种变异的图层混合| 
+| 色彩叠加混合模式	| hue,saturation,color,luminosity	| 根据图层的色相，饱和度等基本属性，完成图层融合| 
+
+
+
+
+demo代码：19-mix-blend-mode
+
+参考资料：https://csscoco.com/inspiration/#/./blendmode/mixblend-text-wave-effect  
+https://csscoco.com/inspiration/#/./blendmode/mix-blend-mode-text-adapt-background  
+
+
+
+
+
+
+
+
